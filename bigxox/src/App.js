@@ -14,23 +14,22 @@ function App() {
 
                 <Smallxox/>
 
-              <div className='line-vertical'></div> 
+
               <Smallxox/>
-              <div className='line-vertical'></div> 
-              <Smallxox/>
-            </div>
-            <div className='flex'>
-              <Smallxox/>
-              <div className='line-vertical'></div>
-              <Smallxox/>
-              <div className='line-vertical'></div> 
               <Smallxox/>
             </div>
             <div className='flex'>
               <Smallxox/>
-              <div className='line-vertical'></div>
+
               <Smallxox/>
-              <div className='line-vertical'></div>
+
+              <Smallxox/>
+            </div>
+            <div className='flex'>
+              <Smallxox/>
+
+              <Smallxox/>
+
               <Smallxox/>
             </div>
           </div>
