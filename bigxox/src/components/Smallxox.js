@@ -2,10 +2,13 @@
 import { Box } from "./Box"
  
  export const Smallxox=()=>{
+    //WRITING LOGIC FOR WHO WINS IN THE SMALL XOX
 
     const[arrayof1,setarrayof1]=useState([0,0,0,0,0,0,0,0,0]);
     const[arrayof2,setarrayof2]=useState([0,0,0,0,0,0,0,0,0]);
-    function check(arr){
+    const [border,setborder]=useState("flex-col gap-y-7 p-4");
+    
+    function check(arr){//logic to check if x or O wins in the component
         console.log("i have been claaed");
         const newarray=[...arr];
         const temp=[[0,3,6],[1,4,7],[2,5,8],[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6]];
@@ -20,12 +23,13 @@ import { Box } from "./Box"
         }
         return false;
     }
-    
+    //putxforarray1 is function that lets us know which box x has marked
     const putxforarray1=(index)=>{
         const newarray=[...arrayof1];
         newarray[index]=1;
         setarrayof1(newarray);
     }
+    //putxforarray1 is function that lets us know which box x has marked
     const putoforarray2=(index)=>{
         const newarray=[...arrayof2];
         newarray[index]=1;
@@ -45,10 +49,11 @@ import { Box } from "./Box"
     return(
         
         
-        <div className="flex-col gap-y-7 p-4">
-            <div className=" flex gap-2 ">
+        <div className={border}>
+            <div className="flex gap-2 w-[170px] justify-between">
                {
                 arr.map((item,i)=>{
+                    //we are passing putxforaary1 as prop so that the child box calls it when it is pressed
                     return(<Box key={i} passthis={()=>{putxforarray1(i)}}  pathisfoy={()=>{
                         putoforarray2(i)
                     }}/>)
@@ -58,9 +63,10 @@ import { Box } from "./Box"
 
 
             </div> 
-            <div className="flex gap-2 mt-2">
+            <div className="flex gap-2 mt-2 w-[170px] justify-between">
             {
                 arr.map((item,i)=>{
+                    //we are passing putxforaary2 as prop so that the child box calls it when it is pressed
                     return(<Box key={i+3} passthis={()=>{putxforarray1(i+3)}} pathisfoy={()=>{
                         putoforarray2(i+3)
                     }}/>)
@@ -69,7 +75,7 @@ import { Box } from "./Box"
                }
             
             </div>
-            <div className="flex gap-2 cursor-pointer mt-2">
+            <div className="flex gap-2 cursor-pointer mt-2 w-[170px] justify-between">
             {
                 arr.map((item,i)=>{
                     return(<Box key={i+6} passthis={()=>{putxforarray1(i+6)}} pathisfoy={()=>{
@@ -82,4 +88,12 @@ import { Box } from "./Box"
         </div>
 
     )
+}
+
+export const bordercompo=(Smallxox)=>{
+    return()=>{
+        return(
+            <dib></dib>
+        )
+    }
 }
