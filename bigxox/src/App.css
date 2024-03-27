@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.line-vertical {
+  width: 1px;
+  height: 100%;
+  background-color: black;
+}
+
+.line-horizontal {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
