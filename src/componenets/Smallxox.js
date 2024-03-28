@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 
 export const Smallxox = (props) => {
     const dispatch = useDispatch();
-    const [player, setPlayer] = useState({winner:"",iswinner:false});
-    const matrix = useSelector(store => store.cart.inceptionmat);
-    const flagof = useSelector(state => state.cart.who_won_flag);
+    const [player, setPlayer] = useState({winner:"",iswinner:false});//set function which will chnage when either of the player wins
+    const matrix = useSelector(store => store.cart.inceptionmat);//subscribing to 9x9 matrix
+    const flagof = useSelector(state => state.cart.who_won_flag);//subscribing to who_one_flag
+    /// so if lets say is wins the first smallbox componenet who_won flag will become=['x',"","","","","",,,,,,,,,,,,,,,] and vise versa
+    
 
     useEffect(() => {
         function check(arr1) {
