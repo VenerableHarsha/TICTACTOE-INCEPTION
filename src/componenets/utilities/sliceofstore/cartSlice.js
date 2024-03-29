@@ -15,7 +15,7 @@ const cartSlice=createSlice({
         ,[0,0,0,0,0,0,0,0,0]
         ,[0,0,0,0,0,0,0,0,0]],
         who_won_flag:["","","","","","","","",""],//flag to check how many grids X or O have won on a bigger scale
-        index_of_small_xox:-1
+        index_of_small_xox:4
 
     },
     reducers:{
