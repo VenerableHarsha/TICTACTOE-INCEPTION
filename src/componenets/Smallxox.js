@@ -9,10 +9,11 @@ export const Smallxox = (props) => {
     const matrix = useSelector(store => store.cart.inceptionmat);//subscribing to 9x9 matrix
     const flagof = useSelector(state => state.cart.who_won_flag);//subscribing to who_one_flag
     /// so if lets say is wins the first smallbox componenet who_won flag will become=['x',"","","","","",,,,,,,,,,,,,,,] and vise versa
-    
+    let border=" flex justify-center  py-2";
+    const subs_index_of_xox=useSelector(store=>store.cart.index_of_small_xox);
 
     useEffect(() => {
-        function check(arr1) {
+        function check(arr1) {//function to check if player has won the smallbox componenet
             if (flagof[props.indexofsmall] === '') {
                 const newarray = arr1[props.indexofsmall];
                 const temp = [[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6]];
@@ -40,9 +41,17 @@ export const Smallxox = (props) => {
         }
         check(matrix);
     }, [matrix, flagof, dispatch, props.indexofsmall]);
+    if(props.indexofsmall===subs_index_of_xox)
+    {
+        border=" flex justify-center  py-2 border-4 rounded-xl"
+    }
+    else{
+        border=" flex justify-center  py-2";
+    }
+    
 
     return (
-        <div>
+        <div className={border}>
             {player.iswinner&&<label> {player.winner} won</label>}
             <div className="grid grid-cols-3 w-44">
                 {

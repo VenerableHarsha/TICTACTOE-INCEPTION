@@ -14,7 +14,9 @@ const cartSlice=createSlice({
         ,[0,0,0,0,0,0,0,0,0]
         ,[0,0,0,0,0,0,0,0,0]
         ,[0,0,0,0,0,0,0,0,0]],
-        who_won_flag:["","","","","","","","",""]//flag to check how many grids X or O have won on a bigger scale
+        who_won_flag:["","","","","","","","",""],//flag to check how many grids X or O have won on a bigger scale
+        index_of_small_xox:-1
+
     },
     reducers:{
         nexturn:(state)=>{
@@ -34,10 +36,14 @@ const cartSlice=createSlice({
             state.who_won_flag[action.payload[0]]=action.payload[1];
 
 
-        }
+        },
+       set_xox_index:(state,action)=>{
+        state.index_of_small_xox=action.payload;
+       }
+        
 
     }
     
 })
-export const{nexturn,markxoro,mark_x_or_O_in_flag}=cartSlice.actions
+export const{nexturn,markxoro,mark_x_or_O_in_flag,set_xox_index}=cartSlice.actions
 export default cartSlice.reducer;
