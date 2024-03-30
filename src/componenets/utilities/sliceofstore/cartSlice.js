@@ -1,7 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
+const iswin = (grid, state) => {
+    const wins = [
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // rows
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // columns
+        [0, 4, 8], [2, 4, 6] // diagonals
+    ];
+
+    for (const win of wins) {
+        const [a, b, c] = win;
+        if (grid[a] !== "" && grid[a] === grid[b] && grid[a] === grid[c]) {
+            state.Game_over = grid[a] === "X" ? 1 : 6; // Set Game_over to 1 for X, 6 for O
+            return;
+        }
+    }
+
+    // If no winner, check for draw
+    if (!grid.includes("")) {
+        state.Game_over = 2; // Set Game_over to 2 for a draw
+        return;
+    }
+
+    // If no winner or draw, Game_over remains 0
+};
 const cartSlice=createSlice({
     name:"cart",
     initialState:{
+        Game_over:0,//flag to see if gameover 0 - nope ,1- x , 6 - O , 2 - Draw
         flag:true,//flag to determine whose turn it is
         ///this you 9x9 matrix
         inceptionmat:
@@ -25,9 +49,6 @@ const cartSlice=createSlice({
         markxoro:(state,action)=>{//this reducer function will atler the inceptionmat grids as 1 by x and 6 by o
             const [row, col] = action.payload;
             const cellValue = state.inceptionmat[row][col];
-
-            console.log(row,col);
-            console.log(cellValue);
             if(cellValue===0){
             if(state.flag===true ){
             state.inceptionmat[action.payload[0]][action.payload[1]]=1;}
@@ -38,8 +59,11 @@ const cartSlice=createSlice({
 
         },
         mark_x_or_O_in_flag:(state,action)=>{//function will mark flag of player on who_won_flag
+            
             state.who_won_flag[action.payload[0]]=action.payload[1];
-
+            console.log(state.who_won_flag[action.payload[0]]);
+            iswin(state.who_won_flag,state);
+            
 
         },
        set_xox_index:(state,action)=>{

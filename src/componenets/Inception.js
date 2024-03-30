@@ -1,35 +1,40 @@
-import { useState } from "react";
-import { Smallxox } from "./Smallxox"
+import React from "react";
+import { Smallxox } from "./Smallxox";
 import { useSelector } from "react-redux";
 
-export const Inception=()=>{
-    const flag=useSelector(store=>store.cart.flag);
-    const arr=[0,0,0,0,0,0,0,0,0];
-    const borderyellow="w-15 h-18  p-6 border-4 border-yellow-300 rounded-xl";
-    const textfont="text-6xl font-bold  ";
+export const Inception = () => {
+  const gameOver = useSelector((store) => store.cart.Game_over);
 
-    
+  // Function to render the game over screen
+  const renderGameOverScreen = () => {
+    if (gameOver === 1) {
+      return <div className="text-3xl text-center">Player X wins!</div>;
+    } else if (gameOver === 6) {
+      return <div className="text-3xl text-center">Player O wins!</div>;
+    } else if (gameOver === 2) {
+      return <div className="text-3xl text-center">It's a draw!</div>;
+    }
+    // Return null if game is not over
+    return null;
+  };
 
-    
-    return(
-        
-        <div >
-            <div className=" text-center text-3xl">Let's play</div>
-            <div className="flex justify-center items-center">
-          <div className={textfont+(flag&&borderyellow)}>X</div>
-        <div className="grid grid-cols-3 w-[700px] gap-x-4 gap-y-4 scale-[0.8]">
-            {
-                arr.map((obj,i)=>{
-                   
-                    return(
-                    <Smallxox key={i} indexofsmall={i}/>)
-                })
-            }
-
-        </div>
-        <div className={textfont+(!flag&&borderyellow)}>O</div>
-        </div>
-        </div>
-        
-    )
-}
+  return (
+    <div>
+      {gameOver !== 0 && renderGameOverScreen()} {/* Render game over screen when game is over */}
+      {gameOver === 0 && (
+        <>
+          <div className="text-center text-3xl">Let's play</div>
+          <div className="flex justify-center items-center">
+            <div className="text-6xl font-bold">X</div>
+            <div className="grid grid-cols-3 w-[700px] gap-x-4 gap-y-4 scale-[0.8]">
+              {[0, 0, 0, 0, 0, 0, 0, 0, 0].map((_, i) => (
+                <Smallxox key={i} indexofsmall={i} />
+              ))}
+            </div>
+            <div className="text-6xl font-bold">O</div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
