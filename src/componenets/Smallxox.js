@@ -21,7 +21,7 @@ export const Smallxox = (props) => {
                 for (let i in temp) {
                     if (newarray[temp[i][0]] + newarray[temp[i][1]] + newarray[temp[i][2]] === 3) {
                         dispatch(mark_x_or_O_in_flag([props.indexofsmall, "X"]));
-                       setwinnercolor("bg-green-400 rounded-xl");
+                       setwinnercolor("bg-blue-400 rounded-xl");
                         setPlayer({
                             winner:"X",
                             iswinner:true
