@@ -23,12 +23,17 @@ const cartSlice=createSlice({
             state.flag=!state.flag;//changes the flag
         },
         markxoro:(state,action)=>{//this reducer function will atler the inceptionmat grids as 1 by x and 6 by o
-            if(state.flag===true){
+            const [row, col] = action.payload;
+            const cellValue = state.inceptionmat[row][col];
+
+            console.log(row,col);
+            console.log(cellValue);
+            if(cellValue===0){
+            if(state.flag===true ){
             state.inceptionmat[action.payload[0]][action.payload[1]]=1;}
             else{
                 state.inceptionmat[action.payload[0]][action.payload[1]]=6;
-            }
-            console.log(action.payload);
+            }}
             
 
         },
