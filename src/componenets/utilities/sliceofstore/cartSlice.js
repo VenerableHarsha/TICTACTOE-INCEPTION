@@ -58,6 +58,13 @@ const cartSlice=createSlice({
             
 
         },
+        resetgrid:(state,action)=>{
+            for(let i=0;i<9;i++)
+            {
+                state.inceptionmat[action.payload][i]=0;
+            }
+
+        },
         mark_x_or_O_in_flag:(state,action)=>{//function will mark flag of player on who_won_flag
             
             state.who_won_flag[action.payload[0]]=action.payload[1];
@@ -74,5 +81,5 @@ const cartSlice=createSlice({
     }
     
 })
-export const{nexturn,markxoro,mark_x_or_O_in_flag,set_xox_index}=cartSlice.actions
+export const{nexturn,markxoro,mark_x_or_O_in_flag,set_xox_index,resetgrid}=cartSlice.actions
 export default cartSlice.reducer;
