@@ -6,12 +6,7 @@ import Home from "./componenets/Home";
 
 function App() {
   return (
-    <Provider store={appStore}>
-    <div className="flex justify-center mt-8">
-      
-    <Inception/>
-    </div>
-    </Provider>
+   <Home/>
    
    
   );

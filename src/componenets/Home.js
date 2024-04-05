@@ -1,27 +1,50 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import Typewriter from 'typewriter-effect';
 
 const Home = () => {
- 
+ const[rules,setrules]=useState(false);
 
   return (
-    <div className='p-8'>
-    <div className='font-bold text-5xl m-5 ml-8'>Ince<span className="text-cyan-300 font-bold">p</span>tion</div>
-    <div className='flex flex-col md:flex-row justify-between'>
-      <div className='flex-col mt-20 ml-9'>
-        <div className='font-bold text-7xl '><span className='text-purple-900'>F</span>un,H<span className='text-yellow-400'>a</span>ir-</div>
-        <div className='font-bold text-7xl '>pullin<span className='text-green-600'>g</span>,Sm<span className='text-red-600'>a</span>rt?</div>
-        <div className='flex gap-10 ml-9 mt-20'>
-          <button className='bg-gray-700 p-4 px-6 rounded-xl text-white font-bold hover:bg-slate-600'>Start game</button>
-          <button className='bg-gray-800 p-4 px-6 rounded-xl text-white font-bold  hover:bg-slate-600'>Rules</button>
+    <div className='w-[100%] h-[100vh] bg-gradient-to-b from-gray-800 from-20% via-slate-900 to-black absolute'>
+      <div className='text-white font-bold text-3xl relative m-4 mx-16 mt-8 drop-shadow-lg'>Ince<span className='text-purple-700'>p</span>tion</div>
+      <div className='flex flex-wrap'>
+        <div>
+      <div className='text-white font-bold text-7xl mx-16 mt-28 w-[500px] flex flex-wrap '>
+        <Typewriter
+          options={{
+            strings: ['Fun, <span style="color:black;">Hair</span> pulling, <span style="color: purple ;">Smart ?</span>'],
+            autoStart: true,
+            loop: true,
+            pauseFor: 300000
+          }}
+        />
+      </div>
+     
+      <div className='flex mx-16 mt-16 gap-14'>
+      <div className='p-4 py-2 bg-blue-400 text-white font-bold rounded-lg border-2 '>Start game</div>
+      <div className='p-4 py-2 bg-transparent rounded-lg border-2 text-white font-bold' onClick={()=>{
+        setrules(!rules);
+      }}>Rules</div>
+      </div>
+      
+      </div>
+      {!rules&&<img src='https://simo.sh/tic-tac-toe-draw.gif' className='w-[300px] h-[300px] mt-20 ml-52'></img>}
+      {//<img src='https://simo.sh/tic-tac-toe-draw.gif' className='w-[300px] h-[300px] mt-20 ml-52'></img>
+      rules&&
+      <div className='flex flex-col gap-7 text-white w-[500px] mx-16 mt-12 font-bold text-2xl' >
+        <h1 className='text-3xl'>Rules</h1>
+       <p>1. Where ever you place your token will decide the corresponding location where opponent plays</p>
+       <p>2. Tokens can be placed even if a given tik tac toe grid is won</p>
+       <p>3. Win 3 small grids in a row to win the game</p>
+       <p>4. Grid belongs to whoever wins it first </p>
+
         </div>
+      }
+      
       </div>
-      <div className="w-[60%] md:w-4/12 mx-7 mt-10 md:mt-0">
-        <img src='https://upload.wikimedia.org/wikipedia/commons/7/7d/Tic-tac-toe-animated.gif' className="w-full"></img>
       </div>
-    </div>
-  </div>
-  
+      
+
   
   );
 };

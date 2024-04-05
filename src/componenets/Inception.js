@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Smallxox } from "./Smallxox";
 import { useSelector } from "react-redux";
 
 export const Inception = () => {
+    
   const gameOver = useSelector((store) => store.cart.Game_over);
 
   // Function to render the game over screen

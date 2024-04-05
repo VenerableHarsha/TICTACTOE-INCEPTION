@@ -34,7 +34,7 @@ export const Smallxox = (props) => {
                 for (let i = 0; i < temp.length; i++) {
                     if (newarray[temp[i][0]] + newarray[temp[i][1]] + newarray[temp[i][2]] === 3) {
                         dispatch(mark_x_or_O_in_flag([props.indexofsmall, "X"]));
-                        setWinnerColor("bg-blue-400 rounded-xl");
+                        setWinnerColor("bg-green-400 rounded-xl");
                         setPlayer({
                             winner: "X",
                             iswinner: true
@@ -60,6 +60,17 @@ export const Smallxox = (props) => {
                     setisfill(temp);
                     dispatch(resetgrid(props.indexofsmall))
                 }
+            }
+            else if(flagof[props.indexofsmall] !== '')
+            {
+                if(check_if_all_boxes_fill(arr1))
+                {
+                    alert("hellooo");
+                    const temp=!isfill;
+                    setisfill(temp);
+                    dispatch(resetgrid(props.indexofsmall))
+                }
+               
             }
            
         }
