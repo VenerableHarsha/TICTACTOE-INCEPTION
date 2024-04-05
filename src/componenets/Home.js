@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Typewriter from 'typewriter-effect';
-
+import { Link } from 'react-router-dom';
 const Home = () => {
  const[rules,setrules]=useState(false);
 
   return (
-    <div className='w-[100%] h-[100vh] bg-gradient-to-b from-gray-800 from-20% via-slate-900 to-black absolute'>
+    <div className='w-[100%] h-[150vh] bg-gradient-to-b from-slate-800 from-10% via-slate-900  to-black  absolute sm:h-[150vh] bg-gradient-to-tr from-slate-800 from-10% via-slate-900  to-black'>
       <div className='text-white font-bold text-3xl relative m-4 mx-16 mt-8 drop-shadow-lg'>Ince<span className='text-purple-700'>p</span>tion</div>
       <div className='flex flex-wrap'>
         <div>
@@ -21,8 +21,8 @@ const Home = () => {
       </div>
      
       <div className='flex mx-16 mt-16 gap-14'>
-      <div className='p-4 py-2 bg-blue-400 text-white font-bold rounded-lg border-2 '>Start game</div>
-      <div className='p-4 py-2 bg-transparent rounded-lg border-2 text-white font-bold' onClick={()=>{
+      <div className='p-4 py-2 bg-transparent text-white font-bold rounded-lg border-2 hover:text-green-500 '><Link to="/playgame">Start game</Link></div>
+      <div className='p-4 py-2 bg-transparent rounded-lg border-2 text-white font-bold hover:text-red-500' onClick={()=>{
         setrules(!rules);
       }}>Rules</div>
       </div>

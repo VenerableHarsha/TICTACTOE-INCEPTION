@@ -34,7 +34,7 @@ export const Smallxox = (props) => {
                 for (let i = 0; i < temp.length; i++) {
                     if (newarray[temp[i][0]] + newarray[temp[i][1]] + newarray[temp[i][2]] === 3) {
                         dispatch(mark_x_or_O_in_flag([props.indexofsmall, "X"]));
-                        setWinnerColor("bg-green-400 rounded-xl");
+                        setWinnerColor("shadow-xl shadow-yellow-400 rounded-xl border-2 border-purple-700");
                         setPlayer({
                             winner: "X",
                             iswinner: true
@@ -47,7 +47,7 @@ export const Smallxox = (props) => {
                             winner: "O",
                             iswinner: true
                         });
-                        setWinnerColor("bg-red-400 rounded-xl");
+                        setWinnerColor("shadow-xl shadow-purple-700 rounded-xl");
                         console.log("O is winner");
                         break;
                     } 
@@ -79,12 +79,12 @@ export const Smallxox = (props) => {
     }, [matrix, flagof, dispatch, props.indexofsmall]);
     
     if (props.indexofsmall === subs_index_of_xox) {
-        border = "flex justify-center py-2 border-4 rounded-xl border-green-600";
+        border = "flex justify-center py-2 border-2 rounded-xl border-green-500";
     }
 
     return (
         <div className={`${border} ${winnercolor}`}>
-            <div className="grid grid-cols-3 w-44">
+            <div className="grid grid-cols-3 w-40 ">
                 {Array(9).fill().map((_, i) => (
                     <Box key={i} indexofbox={[props.indexofsmall, i]} fillcheck={isfill} />
                 ))}

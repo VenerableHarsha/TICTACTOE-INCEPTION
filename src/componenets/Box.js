@@ -12,7 +12,7 @@ const Box = (props) => {
    
 
     const [x_or_y, setxy] = useState("");
-    const [color, setcolor] = useState("w-10 h-10  shadow-xl border-4  rounded-lg   m-2 cursor-pointer text-center font-bold text-3xl");
+    const [color, setcolor] = useState("w-12 h-12  shadow-xl   bg-black  m-1 cursor-pointer text-center font-bold text-3xl");
    useEffect(()=>{
     function emptybox(){
         setxy("");
@@ -31,14 +31,14 @@ const Box = (props) => {
                         dispatch(nexturn());
                         
                         setxy("X");
-                        setcolor("w-10 h-10  shadow-xl border-4  rounded-lg   m-2 cursor-pointer text-center font-bold text-3xl text-yellow-400");
+                        setcolor("w-12 h-12  shadow-xl   bg-black  m-1  cursor-pointer text-center font-bold text-3xl text-yellow-400 brightness-150 pt-1");
                         dispatch(set_xox_index(props.indexofbox[1]));
                         
                     } else {
                         dispatch(markxoro(array));
                         dispatch(nexturn());
                         setxy("O");
-                        setcolor("w-10 h-10  shadow-xl border-4  rounded-lg   m-2 cursor-pointer text-center font-bold text-3xl text-purple-600");
+                        setcolor("w-12 h-12  shadow-xl   bg-black  m-1  cursor-pointer text-center font-bold text-3xl text-purple-700 brightness-150 pt-1");
                         dispatch(set_xox_index(props.indexofbox[1]));
                        
                     }
