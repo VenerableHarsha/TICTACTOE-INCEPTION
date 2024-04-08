@@ -14,7 +14,7 @@ function App() {
     {
         path:"/playgame",
         element: <Provider store={appStore}>
-        <div className=" flex justify-center bg-gradient-to-tr from-slate-800 from-10% via-slate-900  to-black ">
+        <div className="flex justify-center bg-gradient-to-tr from-slate-800 from-10% via-slate-900  to-black w-[100%] ">
           
         <Inception/>
         </div>

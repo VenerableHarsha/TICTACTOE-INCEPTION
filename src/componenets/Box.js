@@ -12,7 +12,7 @@ const Box = (props) => {
    
 
     const [x_or_y, setxy] = useState("");
-    const [color, setcolor] = useState("w-12 h-12  shadow-xl   bg-black  m-1 cursor-pointer text-center font-bold text-3xl");
+    const [color, setcolor] = useState("w-12 h-12  shadow-sm   bg-black  m-1 cursor-pointer text-center font-bold text-3xl hover:bg-slate-700");
    useEffect(()=>{
     function emptybox(){
         setxy("");
@@ -21,7 +21,7 @@ const Box = (props) => {
    },[props.fillcheck])
    
     return (
-        <div className={color} onClick={() => {
+        <div className={color}  onClick={() => {
             if (props.indexofbox[0] === currentindex) {
                 const [row, col] = array;
                 // Check if the corresponding cell in inceptionmat is empty (has a value of 0)
@@ -31,7 +31,7 @@ const Box = (props) => {
                         dispatch(nexturn());
                         
                         setxy("X");
-                        setcolor("w-12 h-12  shadow-xl   bg-black  m-1  cursor-pointer text-center font-bold text-3xl text-yellow-400 brightness-150 pt-1");
+                        setcolor("w-12 h-12 bg-black  m-1  cursor-pointer text-center font-bold text-3xl text-yellow-400 brightness-150 pt-1");
                         dispatch(set_xox_index(props.indexofbox[1]));
                         
                     } else {
