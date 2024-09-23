@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import Box from "./Box";
-import { mark_x_or_O_in_flag } from "./utilities/sliceofstore/cartSlice";
+import { mark_x_or_O_in_flag } from "../../utilities/sliceofstore/cartSlice";
 import { useState, useEffect } from "react";
-import { resetgrid } from "./utilities/sliceofstore/cartSlice";
+import { resetgrid } from "../../utilities/sliceofstore/cartSlice";
 
 export const Smallxox = (props) => {
     const [isfill,setisfill]=useState(false);

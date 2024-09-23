@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { markxoro, nexturn, set_xox_index } from "./utilities/sliceofstore/cartSlice";
+import { markxoro, nexturn, set_xox_index } from "../../utilities/sliceofstore/cartSlice";
 
 const Box = (props) => {
     
