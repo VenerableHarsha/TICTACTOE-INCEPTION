@@ -34,7 +34,25 @@ def predict_move(board_state,current_player,mini_grid ):
         best_move = valid_moves[np.argmax(valid_q_values)]
         return best_move
 
+"""
+example api call 
+{
+  "board": [
+    [0, 0, 1, -1, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 1, -1, 0],
+    [0, 0, 1, 0, 0, 0, 0, -1, 1],
+    [1, -1, 0, 1, 0, -1, 0, 1, 0],
+    [-1, 1, 0, 0, 0, 0, 1, 0, -1],
+    [0, 0, 0, -1, 0, 1, 0, 0, 1],
+    [0, 1, -1, 0, 1, 0, 0, -1, 0],
+    [0, 0, 0, 0, 0, 1, -1, 1, 0],
+    [1, 0, 0, -1, 0, 0, 0, 0, -1]
+  ],
+  "grid": 2,
+  "player": 1
+}
 
+"""
 # FastAPI route to get the move
 @app.post("/predict")
 def get_move(request: MoveRequest):
