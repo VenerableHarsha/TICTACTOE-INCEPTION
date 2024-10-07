@@ -1,45 +1,37 @@
-import './App.css';
-import { Provider } from 'react-redux';
-import appStore from './utilities/appStore';
-import { Smallxox } from './components/Smallxox';
+import { Provider } from "react-redux";
+import { Inception } from "./componenets/Inception";
+import appStore from "./utilities/appStore";
+import Home from "./componenets/Home";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import io from "socket.io-client";
+const socket=io.connect("http://localhost:3001");
+
 
 function App() {
+  const appRouter=createBrowserRouter([
+    {
+        path:"/",
+        element:<Home/>
+    },
+    {
+        path:"/playgame",
+        element: <Provider store={appStore}>
+        <div className="flex justify-center bg-gradient-to-tr from-slate-800 from-10% via-slate-900  to-black w-[100%] ">
+          
+        <Inception/>
+        </div>
+        </Provider>
+    }
+])
   return (
     <div>
-      <div className='flex justify-center p-4 text-4xl font-bold text-gray-500'>Inception</div>
-      <div className='flex justify-center '>
-        <Provider store={appStore}>
-          <div className="flex-col ">
-            <div className='flex mr-10'>
-
-                <Smallxox/>
-
-
-              <Smallxox/>
-              <Smallxox/>
-            </div>
-            <div className='flex'>
-              <Smallxox/>
-
-              <Smallxox/>
-
-              <Smallxox/>
-            </div>
-            <div className='flex'>
-              <Smallxox/>
-
-              <Smallxox/>
-
-              <Smallxox/>
-            </div>
-          </div>
-          <div className="flex items-center ">
-            <Smallxox />
-          </div>
-        </Provider>
-      </div>
+        <RouterProvider router={appRouter}></RouterProvider>
     </div>
+   
+   
+   
   );
 }
+{ }
 
 export default App;
