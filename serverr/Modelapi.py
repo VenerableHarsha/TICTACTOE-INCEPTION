@@ -35,17 +35,20 @@ def can_move(mini_grid):
     return [index for index, value in enumerate(mini_grid) if value == 0]
 
 # Prediction function
-def predict_move(board_state, current_player, mini_grid):
+def predict_move(board_state,mini_grid,current_player):
     # Prepare the features
     features = np.zeros((9, 9, 3))
+    logger.debug("board state %s",board_state)
     features[:, :, 0] = board_state  # Board state
     features[:, :, 1] = current_player  # Current player
     features[:, :, 2] = mini_grid  # Mini grid number
     
     features = features.reshape(1, 9, 9, 3)  # Reshape for the CNN
-    logger.debug(board_state[mini_grid])
+    
     valid_moves = can_move(board_state[mini_grid])
     logger.debug("moves %s",valid_moves)
+    logger.debug("small grid %s",board_state[mini_grid])
+
     q_values = model.predict(features, verbose=0)
     if random.random() < 0.1:  # Explore
             logger.debug("random")
@@ -61,9 +64,9 @@ def predict_move(board_state, current_player, mini_grid):
 # FastAPI route to get the move
 @app.post("/predict")
 def get_move(request: MoveRequest):
-    logger.debug("grid %s",request.grid)
+    
     move = predict_move(request.board, request.grid, request.player)
-    logger.debug(move)
+    logger.debug("moves %s",move)
     return {"move": move}
 
 if __name__ == '__main__':  # Fixed the entry point

@@ -8,6 +8,9 @@ const Home = () => {
  
  const[rules,setrules]=useState(false);
  const [with_whom,setwhom]=useState(null);
+ function refresh(){
+  window.location.reload();
+ }
 
   return (
     <div className='w-[100%] h-[150vh] bg-gradient-to-b from-slate-800 from-10% via-slate-900  to-black  absolute sm:h-[150vh] bg-gradient-to-tr from-slate-800 from-10% via-slate-900  to-black'>
@@ -26,11 +29,14 @@ const Home = () => {
       </div>
      
       <div className='flex mx-16 mt-16 gap-14'>
-      <div className='p-4 py-2 bg-transparent text-white font-bold rounded-lg border-2 hover:text-green-500 '><Link to="/playgame" onClick={()=>{
+      <div className='p-4 py-2 bg-transparent text-white font-bold rounded-lg border-2 hover:text-green-500 '><Link to="/playgame/noai" onClick={()=>{
         setwhom("withfriend");
+        //refresh();
       }}>Play with a friend</Link></div>
-      <div className='p-4 py-2 bg-transparent text-white font-bold rounded-lg border-2 hover:text-green-500 '><Link to="/playgame" onClick={()=>{
-        setwhom("withai");
+      <div className='p-4 py-2 bg-transparent text-white font-bold rounded-lg border-2 hover:text-green-500 '><Link to="/playgame/ai" onClick={()=>{
+       // refresh();
+       setwhom("withai");
+       
       }}>Play with AI</Link></div>
       <div className='p-4 py-2 bg-transparent rounded-lg border-2 text-white font-bold hover:text-red-500' onClick={()=>{
       // chumma();

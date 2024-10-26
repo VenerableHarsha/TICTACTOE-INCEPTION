@@ -9,7 +9,7 @@ const iswin = (grid, state) => {
     for (const win of wins) {
         const [a, b, c] = win;
         if (grid[a] !== "" && grid[a] === grid[b] && grid[a] === grid[c]) {
-            state.Game_over = grid[a] === "X" ? 1 : -1; // Set Game_over to 1 for X, 6 for O
+            state.Game_over = grid[a] === "X" ? 1 : 6; // Set Game_over to 1 for X, 6 for O
             return;
         }
     }

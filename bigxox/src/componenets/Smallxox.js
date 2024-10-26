@@ -41,7 +41,7 @@ export const Smallxox = (props) => {
                         setPlayer({ winner: "X", iswinner: true });
                         console.log("X is winner ");
                         break;
-                    } else if (sum === 18) {
+                    } else if (sum === -3) {
                         dispatch(mark_x_or_O_in_flag([props.indexofsmall, "O"]));
                         setWinnerColor("shadow-xl shadow-purple-700 rounded-xl border-2");
                         setPlayer({ winner: "O", iswinner: true });
