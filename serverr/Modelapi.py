@@ -6,6 +6,7 @@ from keras.models import load_model
 import uvicorn
 import logging
 import random
+from Game import Game,MCTS
 logging.basicConfig(level=logging.DEBUG,  # Set the logging level to DEBUG
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -28,7 +29,8 @@ app.add_middleware(
 # Define the input data model
 class MoveRequest(BaseModel):
     board: list
-    grid: int
+    mini:int
+    grid: list
     player: int
 
 def can_move(mini_grid):
@@ -65,9 +67,16 @@ def predict_move(board_state,mini_grid,current_player):
 @app.post("/predict")
 def get_move(request: MoveRequest):
     
-    move = predict_move(request.board, request.grid, request.player)
+    move = predict_move(request.board, request.mini, request.player)
     logger.debug("moves %s",move)
     return {"move": move}
-
+@app.post("/predict-model2")
+def get_move2(request: MoveRequest):
+    game=Game(board=request.board,current=request.player,mini=request.mini,grid=request.grid)
+    mcts = MCTS(game,max_duration=1)
+    mcts.run()
+    move = mcts.root.best_child(c_param=0).game.mini
+    logger.debug("moves %s",move)
+    return {"move": move}
 if __name__ == '__main__':  # Fixed the entry point
     uvicorn.run("Modelapi:app", host="127.0.0.1", port=8000, reload=True)
