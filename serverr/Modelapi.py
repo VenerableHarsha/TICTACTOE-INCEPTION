@@ -27,6 +27,7 @@ app.add_middleware(
 )
 
 # Define the input data model
+# i have redefined what a list and grid are, grid is the current big xox and mini is the number of the small grid where to play 
 class MoveRequest(BaseModel):
     board: list
     mini:int

@@ -20,14 +20,16 @@ const Box = (props) => {
     
     const flag = useSelector((store) => store.cart.flag);
     const currentindex = useSelector((store) => store.cart.index_of_small_xox);
+    const model = useSelector((store) => store.cart.current_model);
     const inceptionmat = useSelector((store) => store.cart.inceptionmat);
+    const whowon = useSelector((store) => store.cart.who_won_flag);
     const array = props.indexofbox;
     const [ai_move, set_aimove] = useState(null); // ai move will be stored here
     const [x_or_y, setxy] = useState("");
     const [color, setcolor] = useState("w-12 h-12 shadow-sm bg-black m-1 cursor-pointer text-center font-bold text-3xl hover:bg-slate-700");
 
     // API call to get the AI move
-    const make_apiall_to_ai = async (matrix,array) => {
+    const make_apiall_to_ai = async (matrix,model,grid,array) => {
        
         let temp_matrix = matrix.map(row => [...row]);
 
@@ -48,12 +50,13 @@ const Box = (props) => {
        // console.log("Modified copy of matrix:", temp_matrix);
         try {
             console.log("Modified copy of matrix:", temp_matrix);
-            const res = await fetch("http://127.0.0.1:8000/predict", {
+            const res = await fetch(`http://127.0.0.1:8000/${model}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     board: temp_matrix,
-                    grid: array[1],
+                    mini: array[1],
+                    grid:grid,
                     player: 1
                 }),
             });
@@ -169,7 +172,12 @@ const Box = (props) => {
 
           // Wait for state updates and dispatch to finish, then call API
           if(withai=="ai"){
-          await make_apiall_to_ai(inceptionmat,array);}
+            const grid = whowon.map((item) => {
+              if (item === "X") return 1;
+              if (item === "O") return -1;
+              return item; 
+            });
+          await make_apiall_to_ai(inceptionmat,model,grid,array);}
         } else {
           // Synchronous state updates and dispatch
           dispatch(markxoro(array));

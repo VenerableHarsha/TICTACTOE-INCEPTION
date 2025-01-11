@@ -11,7 +11,7 @@ function App() {
   const appRouter=createBrowserRouter([
     {
         path:"/",
-        element:<Home/>
+        element:<Provider store={appStore}><Home/></Provider>
     },
     {
         path:"/playgame/:withai",

@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import Typewriter from 'typewriter-effect';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { set_model } from "../utilities/sliceofstore/cartSlice";
 
-//import image from 'Inception/daddyxox/public/tictoe.png'
 
 const Home = () => {
  
  const[rules,setrules]=useState(false);
  const [with_whom,setwhom]=useState(null);
+ const dispatch = useDispatch();
+ const currentDifficulty = useSelector((store) => store.cart.difficulty);
+
+ const handleClick = () => {
+  dispatch(set_model()); 
+};
  function refresh(){
   window.location.reload();
  }
@@ -15,7 +22,11 @@ const Home = () => {
   return (
     <div className='w-[100%] h-[150vh] bg-gradient-to-b from-slate-800 from-10% via-slate-900  to-black  absolute sm:h-[150vh] bg-gradient-to-tr from-slate-800 from-10% via-slate-900  to-black'>
       <div className='text-white font-bold text-3xl relative m-4 mx-16 mt-8 drop-shadow-lg'>Ince<span className='text-purple-700'>p</span>tion</div>
-      <div className='flex flex-wrap'>
+      <div className='text-grey font-bold text-2xl relative m-4 mx-16 mt-8 drop-shadow-lg'>
+            <button onClick={handleClick} style={{color:'white', border:"solid", borderRadius:"10px",backgroundColor:"grey"}}>
+                Difficulty :  <p></p> {currentDifficulty === 'easy' ? 'Easy' : 'Hard'}
+            </button>
+        </div>      <div className='flex flex-wrap'>
         <div>
       <div className='text-white font-bold text-7xl mx-16 mt-28 w-[500px] flex flex-wrap '>
         <Typewriter

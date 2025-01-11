@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 const iswin = (grid, state) => {
     const wins = [
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // rows
@@ -41,7 +41,9 @@ const cartSlice=createSlice({
         who_won_flag:["","","","","","","","",""],//flag to check how many grids X or O have won on a bigger scale
         index_of_small_xox:4,
         ai_ka_moves:null,
-        flag_for_ai:true
+        flag_for_ai:true,
+        current_model:"predict",
+        difficulty: 'easy'
 
     },
     reducers:{
@@ -84,11 +86,20 @@ const cartSlice=createSlice({
        },
        set_ai_move:(state,action)=>{
         state.ai_ka_moves=action.payload
-       }
+       },
+       set_model:(state)=>{
+        if (state.current_model=='predict'){
+            state.current_model = 'predict-model2';
+                state.difficulty = 'hard';}
+        else
+            {state.current_model='predict';
+            state.difficulty = 'easy';
+            }
+       },
         
 
     }
     
 })
-export const{nexturn,markxoro,mark_x_or_O_in_flag,set_xox_index,resetgrid,set_ai_move,setter_for_ai}=cartSlice.actions
+export const{nexturn,markxoro,mark_x_or_O_in_flag,set_xox_index,resetgrid,set_ai_move,setter_for_ai,set_model}=cartSlice.actions
 export default cartSlice.reducer;
