@@ -13,16 +13,29 @@ export const Inception = () => {
   const flag=useSelector((store)=>store.cart.flag);
   // Function to render the game over screen
   const renderGameOverScreen = () => {
-    if (gameOver === 1) {
-      return <div className="text-6xl text-center h-[100vh] flex justify-center items-center " style={{ color:"yellow" ,textShadow: '0 0 50px yellow' }}>Player X wins!</div>;
-    } else if (gameOver === 6) {
-      return <div className="text-6xl text-center h-[100vh] flex justify-center items-center " style={{ color:"purple" ,textShadow: '0 0 50px purple' }}>Player O wins!</div>;
-    } else if (gameOver === 2) {
-      return <div className="text-6xl text-center h-[100vh] flex justify-center items-center " style={{ color:"white" ,textShadow: '0 0 50px white' }}>It's a draw!</div>;
+    if (gameOver === 1 || gameOver === 6 || gameOver === 2) {
+      return (
+        <div className="text-6xl text-center h-[100vh] flex flex-col justify-center items-center">
+          <div
+            style={{
+              color: gameOver === 1 ? "yellow" : gameOver === 6 ? "purple" : "white",
+              textShadow: `0 0 50px ${gameOver === 1 ? "yellow" : gameOver === 6 ? "purple" : "white"}`,
+            }}
+          >
+            {gameOver === 1 ? "Player X wins!" : gameOver === 6 ? "Player O wins!" : "It's a draw!"}
+          </div>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-6 px-6 py-3 text-2xl bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
+          >
+            Play Again
+          </button>
+        </div>
+      );
     }
-    // Return null if game is not over
     return null;
   };
+  
   
 
   return (
